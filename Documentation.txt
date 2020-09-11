@@ -14,11 +14,11 @@ Input
 	○ Example [29,59,14,11,3,13,15,18,12,16,6,17,7,47,61,5,21,2,41,9,10,8,19,1,4]
 
 Expected Output
-ww mm aa       aa mm mm aa    aa aa          aa mm ww       
-09 21 01       03 xx xx 11    19 47          04 xx 12       
-10 xx 02       05 xx xx 13    29 59          08 xx 14       
-               07 xx xx 17    41 61          16 xx 15       
-                                             06 xx 18   
+	ww mm aa      aa mm mm aa   aa aa         aa mm ww      
+	09 12 01      02 14 15 03   05 07         11 18 21      
+	10 xx 13      17 xx xx 19   29 41         47 xx xx      
+				  59 xx xx 61   04 08         16 xx xx      
+											  06 xx xx   
 										
 Description of Code:
 Initially we spilt the execution of the code into 3 parts.
@@ -47,9 +47,9 @@ Line 117:121: The IDs' from the string are parsed into an array.
 Line 122: The number of digits in Longest Number in Ids' is found.
 Line 129:135: Strings for marking window, middle and aisle seats are padded with repective letter.
 Line 136: The 3-Dimensional Result array will be consisting of the Seating arrangement of the IDs'.
-Line 141:159: It prints the Marking for Window, middle and aisle seats with respective lettered strings.
+Line 141:160: It prints the Marking for Window, middle and aisle seats with respective lettered strings.
 Line 164:201: It consists for 3 for loops which is used to traverse through the array co-ordinates and fill only the aisle seats first with the prioritized array elements in order.
 The String format function is used to maintain the alignment between the markings.
-Line 124:224: It also consists of 3 for loops which is used to traverse through the array co-ordinates and fill only the window seats with the prioritized array elements in order.
-Line 228:246: It also consists of 3 for loops which is used to traverse through the array co-ordinates and fill the remaining seats with the prioritized array elements in order.
-Line 247:258: It consists of 3 for loops used to print the marked output.
+Line 203:223: It also consists of 3 for loops which is used to traverse through the array co-ordinates and fill only the window seats with the prioritized array elements in order.
+Line 226:244: It also consists of 3 for loops which is used to traverse through the array co-ordinates and fill the remaining seats with the prioritized array elements in order.
+Line 246:257: It consists of 3 for loops used to print the marked output.
