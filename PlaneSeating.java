@@ -133,7 +133,7 @@ public class PlaneSeating {
             EmptySeats = EmptySeats +"x";
             space = space + " ";
         }
-        String[][][] result = new String[count][rowsmax][colmax];
+        String[][][] result = new String[count][maxtemp][maxtemp];
         idArray = prioritize(idArray);
         int rowtrav=0,coltrav=0,travarr=0;
         
@@ -161,11 +161,11 @@ public class PlaneSeating {
 
         //filling aisle seats
         
-        for(int x=0;x<count;x++)
+        for(int y=0;y<maxtemp;y++)
         {
-            for(int z=0;z<maxtemp;z++)
+            for(int x=0;x<count;x++)
             {
-                for(int y=0;y<maxtemp;y++)
+                for(int z=0;z<maxtemp;z++)
                 {
                     if(y<rows[x] && z<columns[x])
                     {
@@ -185,7 +185,7 @@ public class PlaneSeating {
                         }
                         else
                         {
-                            if((z==0 || z==(columns[x]-1)) && (x!=0 && x!=count-1))
+                            if((x!=0 && x!=count-1)&&(z==0 || z==columns[x]-1))
                             {
                                 if(travarr<ids_count)
                                     result[x][y][z]=String.format("%0"+longSize+"d",idArray[travarr++]);
@@ -199,37 +199,35 @@ public class PlaneSeating {
                 }
             }
         }
-        
-        //filling windows seats
-        for(int x=0;x<count;x++)
+        //filling window seats
+        for(int y=0;y<maxtemp;y++)
         {
-            for(int z=0;z<maxtemp;z++)
+            for(int x=0;x<count;x++)
             {
-                for(int y=0;y<maxtemp;y++)
+                for(int z=0;z<maxtemp;z++)
                 {
                     if(y<rows[x] && z<columns[x])
                     {
-
-                            if((x==0 && z==0) || (x==count-1 && z==(columns[count-1])-1))
-                            {
-                                if(travarr<ids_count)
-                                    result[x][y][z]=String.format("%0"+longSize+"d",idArray[travarr++]);
-                                else
-                                    result[x][y][z]=EmptySeats;
-                            }
-                        
+                        if((x==0 || x==count-1) && (x==z))
+                        {
+                            if(travarr<ids_count)
+                                result[x][y][z]=String.format("%0"+longSize+"d",idArray[travarr++]);
+                            else
+                                result[x][y][z]=EmptySeats;
+                        }
                     }
+                    else
+                        result[x][y][z]=space;
                 }
             }
         }
         
-        
         //filling middle seats
-        for(int x=0;x<count;x++)
+        for(int y=0;y<maxtemp;y++)
         {
-            for(int z=0;z<maxtemp;z++)
+            for(int x=0;x<count;x++)
             {
-                for(int y=0;y<maxtemp;y++)
+                for(int z=0;z<maxtemp;z++)
                 {
                     if(y<rows[x] && z<columns[x])
                     {
@@ -244,9 +242,10 @@ public class PlaneSeating {
                 }
             }
         }
-            for(int i=0;i<count;i++)
+        
+            for(int i=0;i<maxtemp;i++)
             {
-                for(int j=0;j<maxtemp;j++)
+                for(int j=0;j<count;j++)
                 {
                     for(int k=0;k<maxtemp;k++)
                     {
