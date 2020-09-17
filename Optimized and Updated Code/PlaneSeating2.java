@@ -149,11 +149,9 @@ public class PlaneSeating2 {
                     continue;
                 else{
                 //traversing through the rows
-                for(int z=0;z<largestMatrixSize;z++){
+                for(int z=0;z<columns[x];z++){
                     //traversing through the columns
-                    for(int y=0;y<largestMatrixSize;y++){
-                        //constraining the traversing till the specified dimensions of set
-                        if(y<rows[x] && z<columns[x] ){
+                    for(int y=0;y<rows[x];y++){
                             //Aisle Seats on First Set are traversed
                             if(x==0 && z==columns[0]-1){
                                 //checking whether traversing array index is within the passenger count value
@@ -183,10 +181,6 @@ public class PlaneSeating2 {
                                         idMarkedSeats[x][y][z]=emptySeats;
                                 }
                             }
-                        }
-                        //Filling out of dimensional co-ordinates with Gap Filler
-                        else
-                            idMarkedSeats[x][y][z]=spaceBetweenElements;
                     }
                 }
             }
@@ -202,11 +196,9 @@ public class PlaneSeating2 {
          //traversing through the set in deck
         for(int x=0;x<setCount;x++){
             //traversing through the rows
-            for(int z=0;z<largestMatrixSize;z++){
+            for(int z=0;z<columns[x];z++){
                 //traversing through the columns
-                for(int y=0;y<largestMatrixSize;y++){
-                    //constraining the traversing till the specified dimensions of set
-                    if(y<rows[x] && z<columns[x]){
+                for(int y=0;y<rows[x];y++){
                         //Filling up 0th set window seat and last set window seat
                         if((x==0 && z==0)|| (x==setCount-1 && z==(columns[setCount-1]-1))){
                             //checking whether traversing array index is within the passenger count value
@@ -216,10 +208,6 @@ public class PlaneSeating2 {
                             else
                                 idMarkedSeats[x][y][z]=emptySeats;
                         }
-                    }
-                    //Filling out of dimensional co-ordinates with Gap Filler
-                    else
-                        idMarkedSeats[x][y][z]=spaceBetweenElements;
                 }
             }
         }
@@ -234,11 +222,9 @@ public class PlaneSeating2 {
         //traversing through the set in deck
         for(int x=0;x<setCount;x++){
             //traversing through the columns
-            for(int z=0;z<largestMatrixSize;z++){
+            for(int z=0;z<columns[x];z++){
                 //traversing through the columns
-                for(int y=0;y<largestMatrixSize;y++){
-                    //constraining the traversing till the specified dimensions of set
-                    if(y<rows[x] && z<columns[x]){
+                for(int y=0;y<rows[x];y++){
                         //If Values are not filled, filling it with Passengers/EmptySpaceFillers
                         if(idMarkedSeats[x][y][z]==null){
                             //checking whether traversing array index is within the passenger count value
@@ -248,7 +234,6 @@ public class PlaneSeating2 {
                             else
                                 idMarkedSeats[x][y][z]=emptySeats;
                         }
-                    }
                 }
             }
         }
@@ -290,8 +275,11 @@ public class PlaneSeating2 {
                     //Traversing upto end dimension of square matrix
                     for(int k=0;k<largestMatrixSize;k++){
                         if(k<columns[j]){
-                            //In order to print column wise of all sets the indexing is modified as below
-                            System.out.print(idMarkedSeats[j][i][k]+" ");
+                            if(idMarkedSeats[j][i][k]!=null)
+                                //In order to print column wise of all sets the indexing is modified as below
+                                System.out.print(idMarkedSeats[j][i][k]+" ");
+                            else
+                                System.out.print(spaceBetweenElements+" ");
                         }
                     }
                     System.out.print("  ");
@@ -366,12 +354,12 @@ public class PlaneSeating2 {
             //Using Ternary Operator to denoth the suffix of set
             System.out.print("Enter Number of Rows for "+(i+1)+(i==0?"st":(i==1?"nd":(i==2?"rd":"th")))+" set : ");
             rows[i] = Integer.parseInt(scan.nextLine());
-            if(largestMatrixSize<rows[i])
+            if(rows[i]>largestMatrixSize)
                 largestMatrixSize=rows[i];
             //Using Ternary Operator to denoth the suffix of set
             System.out.print("Enter Number of Columns for "+(i+1)+(i==0?"st":(i==1?"nd":(i==2?"rd":"th")))+" set : ");
             columns[i] = Integer.parseInt(scan.nextLine());
-            if(largestMatrixSize<columns[i])
+            if(columns[i]>largestMatrixSize)
                 largestMatrixSize=columns[i];
         }
     }
